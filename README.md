@@ -1,4 +1,4 @@
-Description
+# Description
 RBiogateway is an R package designed to provide programmatic access to the BioGateway knowledge network (https://biogateway.eu), which integrates biological information from multiple sources.
 
 Key Features
@@ -7,8 +7,8 @@ Reproducible Research: Designed to fit into standard R bioinformatics workflows.
 Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/AlbertoHernandezHidalgo/PyBioGateway.git)
 
 
-Installation
-```
+# Installation
+```r
 devtools::install_github("tecnomod-um/RBioGateway")
 
 library(RBioGateway)
@@ -16,8 +16,8 @@ library(RBioGateway)
 bp2prot(biological_process = "GO:0043524", taxon = "Homo sapiens", sources = T)
 ```
 
-Development Status
+# Development Status
 This package is currently under development as part of TFG in Biotechnology at the University of Murcia, supervised by Dr. Jesualdo Tomás Fernández Breis and Juan Mulero Hernández.
 
-License
+# License
 MIT License
