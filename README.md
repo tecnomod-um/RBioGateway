@@ -32,7 +32,7 @@ Although BioGateway is a knowledge network focused mainly on human, information 
 **Key Features**
 - R Interface: Seamless integration with BioGateway endpoint.
 - Reproducible Research: Designed to fit into standard R bioinformatics workflows.
-- Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/AlbertoHernandezHidalgo/PyBioGateway.git)
+- Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/tecnomod-um/PyBioGateway).
 
 
 # Installation
@@ -131,7 +131,7 @@ Functions:
 | type_data             | Biological type domain               |
 
 
-- **Functions to retrieve relationships between domains**. These functions provide the user information about one biological domain using another domain as input. That is, you can explore the relationship between different biological entities. Example: What proteins does the Brca1 gene encode in mice? In which cellular components is it found?
+- **Functions to retrieve relationships between domains**. These functions provide the user information about one biological domain using another domain as input. That is, you can explore the relationship between different biological entities. Example: What proteins does the Brca1 gene encode in mouse? In which cellular components is it found?
 ```r
 gene2prot("Brca1", "Mus musculus")
 ```
