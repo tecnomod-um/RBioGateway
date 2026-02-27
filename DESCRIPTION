@@ -1,14 +1,13 @@
 Package: RBioGateway
-Title: What the Package Does (One Line, Title Case)
+Title: RBioGateway - An R package for the programmatic exploitation of biological graphs from BioGateway
 Version: 0.0.0.9000
-Authors@R: 
-    person("Antonio Jose", "Manuel Martinez", , "aj.manuelmartinez@um.es", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Antonio Jose", "Manuel-Martínez", email = "aj.manuelmartinez@um.es", role = c("aut")), person("Juan", "Mulero-Hernández", email = "juan.mulero@um.es", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6818-3443")), person("Jesualdo Tomás", "Fernández-Breis", email = "jfernand@um.es", role = c("edt", "rev"), comment = c(ORCID = "0000-0002-7558-2880")))
+Description: Through a set of user-friendly functions, the RBioGateway package facilitates programmatic access to BioGateway, a biological knowledge graph that integrates information from multiple databases. Users are abstracted from the SPARQL query language and can simultaneously exploit information from multiple databases and biological domains, such as genes, proteins, phenotypes, cis-regulatory modules, topologically associating domains, Gene Ontology terms, as well as the relationships between these entities.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends: 
     SPARQL
-URL: https://github.com/juan-mulero/RBioGateway
-BugReports: https://github.com/juan-mulero/RBioGateway/issues
+URL: https://github.com/tecnomod-um/RBioGateway
+BugReports: https://github.com/tecnomod-um/RBioGateway/issues
