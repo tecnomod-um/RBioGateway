@@ -1,13 +1,9 @@
-  <!-- badges: start -->
-  [![R-CMD-check](https://github.com/juan-mulero/RBioGateway/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/juan-mulero/RBioGateway/actions/workflows/R-CMD-check.yaml)
-  <!-- badges: end -->
-
 # Description
 RBiogateway is an R package that provides programmatic access to BioGateway (https://biogateway.eu), a biological knowledge graph that integrates data from multiple databases across diverse biological domains. The package offers a set of user-friendly functions that abstract users from the SPARQL query language, enabling seamless access to integrated information on genes, proteins, phenotypes, cis-regulatory modules, topologically associating domains, Gene Ontology terms, and the relationships among these entities.
 
 ![BGW example](https://github.com/juan-mulero/cisreg/blob/19d2155282f4242dac0f8a076a05679c651cacef/images/UseCases.PNG "Example")
 
-Although BioGateway is a knowledge network focused mainly on humans, information about other organisms can also be explored:
+Although BioGateway is a knowledge network focused mainly on human, information about other organisms can also be explored:
 
 | Taxon                                   | Common name                 | Taxon ID |
 |-----------------------------------------|-----------------------------|----------|
@@ -34,9 +30,9 @@ Although BioGateway is a knowledge network focused mainly on humans, information
 
 
 **Key Features**
-R Interface: Seamless integration with BioGateway endpoint.
-Reproducible Research: Designed to fit into standard R bioinformatics workflows.
-Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/AlbertoHernandezHidalgo/PyBioGateway.git)
+- R Interface: Seamless integration with BioGateway endpoint.
+- Reproducible Research: Designed to fit into standard R bioinformatics workflows.
+- Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/AlbertoHernandezHidalgo/PyBioGateway.git)
 
 
 # Installation
