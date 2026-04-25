@@ -1,6 +1,6 @@
 #' Get CRMs by coordinates (getCRMs_by_coord)
 #'
-#' Function to obtain the cis-regulatory modules (CRMs) located in a range of coordinates.
+#' Function to obtain the human cis-regulatory modules (CRMs) located in a range of coordinates.
 #'
 #' @param chromosome chromosome name (string). Example: "chr-1".
 #' @param start start position (integer).
@@ -51,7 +51,7 @@ getCRMs_by_coord <- function(chromosome, start, end) {
   } else {
     # Order by coordinates
     results_sorted <- results[order(results$start, results$end), ]
-    row.names(results_sorted) = 1:nrow(results_sorted)
+    rownames(results_sorted) <- NULL
     return(results_sorted)
   }
 }

@@ -20,6 +20,7 @@ getGene_info <- function(gene, taxon) {
 
   # Check if taxon is numeric or a name
   if (suppressWarnings(!is.na(as.numeric(taxon)))) {
+    num_taxon = taxon
   } else {
     # Query to get taxon ID from its name
     query_tax <- sprintf(

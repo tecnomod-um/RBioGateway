@@ -17,7 +17,7 @@ getCRMs_by_coord(chromosome, start, end)
 A data.frame of located CRMs in the window of coordinates.
 }
 \description{
-Function to obtain the cis-regulatory modules (CRMs) located in a range of coordinates.
+Function to obtain the human cis-regulatory modules (CRMs) located in a range of coordinates.
 }
 \examples{
 \dontrun{

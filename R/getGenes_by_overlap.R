@@ -1,22 +1,22 @@
-#' Get genes by coordinates (getGenes_by_coord)
+#' Get genes by ovelap (getGenes_by_overlap)
 #'
-#' Function to retrieve human genes located within a specified range of genomic coordinates, optionally filtered by strand orientation.
+#' Function to retrieve human genes that completely overlap with a specific position or a specific range of genomic coordinates, with the option to filter them by strand orientation.
 #'
 #' @param chr Chromosome name (string). Example: "chr-1".
 #' @param start Start position (integer).
-#' @param end End position (integer).
+#' @param end End position (integer). Default: NULL
 #' @param strand Strand orientation (string), or NULL if not specified. Possible values: "ForwardStrandPosition", "ReverseStrandPosition" and NULL. Default: NULL.
 #'
-#' @return A data.frame containing gene names, start, end, and strand for genes within the specified coordinates. If no data is available, a message is returned.
+#' @return A data.frame containing gene names, start, end, and strand for overlapping genes. If no data is available, a message is returned.
 #'
 #' @examples
 #' \dontrun{
-#' getGenes_by_coord("chr-1", 52565276, 58596412, "ForwardStrandPosition")
+#' getGenes_by_overlap("chr-16", 52565276)
 #' }
 #'
 #' @export
 
-getGenes_by_coord <- function(chr, start, end, strand = NULL) {
+getGenes_by_overlap <- function(chr, start, end = NULL, strand = NULL) {
   # Define the SPARQL endpoint
   endpoint_sparql <- "https://semantics.inf.um.es/biogateway"
 
@@ -25,8 +25,7 @@ getGenes_by_coord <- function(chr, start, end, strand = NULL) {
 
   # Case when strand is NULL
   if (is.null(strand)) {
-    query <- sprintf(
-      "
+    template <- "
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       PREFIX obo: <http://purl.obolibrary.org/obo/>
       PREFIX nuccore: <https://www.ncbi.nlm.nih.gov/nuccore/>
@@ -41,20 +40,21 @@ getGenes_by_coord <- function(chr, start, end, strand = NULL) {
                     obo:RO_0002162 ?taxon .
               ?str skos:prefLabel ?strand .
               # Filter by the specified chromosome and coordinate range
-              FILTER (xsd:integer(?start) >= %s && xsd:integer(?end) <= %s)
+              FILTER (xsd:integer(?start) <= %s && xsd:integer(?end) >= %s)
           }
       }
-      ",
-      chr_ncbi, start, end
-    )
+      "
+
+    if (is.null(end)){end <- start}
+    query <- sprintf(template, chr_ncbi, start, end)
 
     # Execute the SPARQL query
     results <- SPARQL(endpoint_sparql, query)$results
   }
+
   # Case when strand is specified
   else {
-    query <- sprintf(
-      "
+    template <- "
       PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
       PREFIX obo: <http://purl.obolibrary.org/obo/>
       PREFIX nuccore: <https://www.ncbi.nlm.nih.gov/nuccore/>
@@ -69,12 +69,13 @@ getGenes_by_coord <- function(chr, start, end, strand = NULL) {
                     obo:GENO_0000906 strand:%s ;
                     obo:RO_0002162 ?taxon .
               # Filter by the specified chromosome and coordinate range
-              FILTER (xsd:integer(?start) >= %s && xsd:integer(?end) <= %s)
+              FILTER (xsd:integer(?start) <= %s && xsd:integer(?end) >= %s)
           }
       }
-      ",
-      chr_ncbi, strand, start, end
-    )
+      "
+
+    if (is.null(end)){end <- start}
+    query <- sprintf(template, chr_ncbi, strand, start, end)
 
     # Execute the SPARQL query
     results <- SPARQL(endpoint_sparql, query)$results

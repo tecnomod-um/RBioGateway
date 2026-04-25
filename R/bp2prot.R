@@ -16,9 +16,6 @@
 #' @export
 
 bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
-  # Endpoint
-  endpoint_sparql <- "https://semantics.inf.um.es/biogateway"
-
   # Check sources and invariable parts of the queries
   select <- ifelse(sources, "?protein_name ?relation_label ?database ?articles", "?protein_name")
   prefixes <- "
@@ -66,7 +63,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
     )
 
     # Run query
-    results <- SPARQL(endpoint_sparql, query)$results
+    results <- SPARQL(.endpoint_sparql, query)$results
 
     # If no results, try with GO ID
     if (nrow(results) < 1) {
@@ -84,7 +81,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
         ", prefixes, select, biological_process, invariable_query
       )
 
-      results <- SPARQL(endpoint_sparql, query)$results
+      results <- SPARQL(.endpoint_sparql, query)$results
     }
 
   } else if (is.character(taxon)) {
@@ -110,7 +107,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
       ", prefixes, select, biological_process, taxon, invariable_query
     )
 
-    results <- SPARQL(endpoint_sparql, query)$results
+    results <- SPARQL(.endpoint_sparql, query)$results
 
     # If no results, try with GO ID
     if (nrow(results) < 1) {
@@ -134,7 +131,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
         ", prefixes, select, biological_process, taxon, invariable_query
       )
 
-      results <- SPARQL(endpoint_sparql, query)$results
+      results <- SPARQL(.endpoint_sparql, query)$results
     }
 
   } else if (is.numeric(taxon)) {
@@ -157,7 +154,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
       ", prefixes, select, biological_process, taxon, invariable_query
     )
 
-    results <- SPARQL(endpoint_sparql, query)$results
+    results <- SPARQL(.endpoint_sparql, query)$results
 
     # If no results, try with GO ID
     if (nrow(results) < 1) {
@@ -178,7 +175,7 @@ bp2prot <- function(biological_process, taxon = NULL, sources = FALSE) {
         ", prefixes, select, biological_process, taxon, invariable_query
       )
 
-      results <- SPARQL(endpoint_sparql, query)$results
+      results <- SPARQL(.endpoint_sparql, query)$results
     }
 
   } else {

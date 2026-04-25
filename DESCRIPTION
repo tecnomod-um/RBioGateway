@@ -11,3 +11,6 @@ Depends:
     SPARQL
 URL: https://github.com/tecnomod-um/RBioGateway
 BugReports: https://github.com/tecnomod-um/RBioGateway/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

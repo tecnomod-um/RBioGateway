@@ -35,6 +35,19 @@ Although BioGateway is a knowledge network focused mainly on human, information 
 - Python Parity: Implements equivalent functionality to the existing [Python package](https://github.com/tecnomod-um/PyBioGateway).
 
 
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [About BioGateway](#about-biogateway)
+- [Functions](#type-of-rbiogateway-functions)
+  - [Functions that relate entities](#functions-that-relate-entities)
+  - [Functions that extract features](#functions-that-extract-features)
+  - [Functions by location aspects](#functions-by-location-aspects)
+
+- [Example of Use Case](#example-of-use-case-detailed)
+
+
 # Installation
 ```r
 devtools::install_github("tecnomod-um/RBioGateway")
@@ -45,6 +58,34 @@ bp2prot(biological_process = "GO:0043524", taxon = "Homo sapiens", sources = T)
 ```
 
 # About BioGateway
+
+BioGateway integrates a total of 38 sources indicated below.
+
+**Biological domains and their databases:**
+-   **Cis-regulatory modules (CRM)**. Databases (25): CancerEnD, JEME, EnDisease, FANTOM5, FOCS, EnhancerDB, HACER, EnnhancerAtlas 2.0, ChromHMM, Ensembl 109, SEA 3.0, GenoSTAN, SEdb 2.0, scEnhancer, EnhFFL, GeneHancer 4.8, Roadmap, RAEdb, TiED, SCREEN V3, dbSUPER, DiseaseEnhancer, ENdb, Refseq V110, VISTA.
+-   **Topological associated domains (TAD)**. Databases (2): 3DGB and TADKB.
+-   **Genes**. Databases (1): Uniprot.
+-   **Proteins**. Databases (1): Uniprot.
+-   **Phenotypes**. Databases (1): Online Mendelian Inheritance in Man (OMIM).
+-   **Biological Processes**. Databases (1): Gene Ontology (GO).
+-   **Molecular functions**. Databases (1): Gene Ontology (GO).
+-   **Cellular components**. Databases (1): Gene Ontology (GO).
+-   **Taxa**. Database (1): NCBITaxon Ontology.
+
+**Relationships between biological domains and their databases:**
+-   **CRMs and target genes**. Databases (16): CancerEnD, JEME, EnDisease, FANTOM5, FOCS, HACER, EnnhancerAtlas 2.0, SEA 3.0, SEdb 2.0, scEnhancer, EnhFFL, GeneHancer 4.8, dbSUPER, DiseaseEnhancer, ENdb, VISTA.
+-   **CRMs and transcription factors (proteins)**. Databases (2): ENdb and EnhFFL.
+-   **CRMs and phenotypes**. Databases (3): DiseaseEnhancer, ENdb, EnDisease.
+-   **Genes and phenotypes**. Databases (1): Uniprot/OMIM. 
+-   **Proteins and biological processes**. Databases (1): Gene Ontology.
+-   **Proteins and molecular functions**. Databases (1): Gene Ontology.
+-   **Proteins and cellular components**. Databases (1): Gene Ontology.
+-   **Protein interactions**. Databases (1): IntAct.
+-   **Target genes and transcripcion factors (proteins)**. Databases (3): CollecTRI, TFLink and AGRIS.
+-   **Protein-Protein regulatory relations**. Databases (1): Signor.
+-   **Orthology proteins**. Databases (1): OrthoDB.
+
+The Molecular Interactions Ontology (MI) and the Biolink model are also included in BioGateway.
 
 The targeted endpoint of BioGateway is available at [https://semantics.inf.um.es/biogateway](https://semantics.inf.um.es/biogateway), using SPARQL language.
 
@@ -80,13 +121,20 @@ Supplementary material and tutorials for further exploration of the BioGateway n
 
 # Type of RBioGateway functions
 
-In the current package design, we can classify the generated functions into two types: **Functions to retrieve data domain** and **Functions to retrieve relationships between domains**. Las funciones están documentadas, por lo que el usuario puede acceder a dicha documentación mediante la consulta de ayuda:
+In the current package design, we can classify the generated functions into three types: 
+- Functions that extract features from a given entity.
+- Functions that relate entities, that is, different biological domains.
+- Functions that extract biological entities by location aspects.
+
+The functions are documented, so users can access this documentation by consulting the help:
 
 ```r
 ?getGene_info
 ```
 
-- **Functions to retrieve data domain**. These functions are designed to provide the user data about the biological entity consulted. That is, information about a gene, protein, cis regulatory module, etc. Example: Give me information about the Brca1 gene in mouse.
+### Functions that extract features from a given entity. 
+
+These functions are designed to provide the user data about the biological entity consulted. That is, information about a gene, protein, cis-regulatory module, etc. Example: Give me information about the Brca1 gene in mouse.
 ```r
 getGene_info("Brca1", "Mus musculus")
 ```
@@ -116,22 +164,21 @@ $alt_gene_sources
 
 Functions:
 
-| Function              | Domain                               |
-|-----------------------|--------------------------------------|
-| getCRM_info           | Cis-Regulatory Module (enhancer)     |
-| getCRM_add_info       | Cis-Regulatory Module (enhancer)     |
-| getCRMs_by_coord      | Cis-Regulatory Module (enhancer)     |
-| getGene_info          | Gene                                 |
-| getGenes_by_coord     | Gene                                 |
-| getPhenotype          | Phenotype                            |
-| getProtein_info       | Protein                              |
-| getTAD_info           | Topologically Associating Domain     |
-| getTAD_add_info       | Topologically Associating Domain     |
-| getTADs_by_coord      | Topologically Associating Domain     |
-| type_data             | Biological type domain               |
+| Function              | Input                                   | Output                                       |
+|-----------------------|-----------------------------------------|----------------------------------------------|
+| type_data             | Entity                                  | Biological type (for example: Gene, Protein) |
+| getGene_info          | Gene                                    | Gene features                                |
+| getProtein_info       | Protein                                 | Protein features                             |
+| getPhenotye           | label                                   | Phenotypes containing the label              |
+| getCRM_info           | CRM                                     | CRM genomic features                         |
+| getCRM_add_info       | CRM                                     | CRM evidences                                |
+| getTAD_info           | TAD                                     | TAD genomic features                         |
+| getTAD_add_info       | TAD                                     | TAD evidences                                |
 
 
-- **Functions to retrieve relationships between domains**. These functions provide the user information about one biological domain using another domain as input. That is, you can explore the relationship between different biological entities. Example: What proteins does the Brca1 gene encode in mouse? In which cellular components is it found?
+### Functions that relate entities
+
+These functions provide the user information about one biological domain using another domain as input. That is, you can explore the relationship between different biological entities. Example: What proteins does the Brca1 gene encode in mouse? In which cellular components is it found?
 ```r
 gene2prot("Brca1", "Mus musculus")
 ```
@@ -189,6 +236,35 @@ Functions:
 | prot_regulates        | Protein                                       | Protein (regulated)                        |
 | prot2prot             | Protein                                       | Protein (molecular interaction)            |
 | prot2ortho            | Protein                                       | Protein (orthologous)                      |
+
+
+### Functions by location aspects:
+
+Functions that extract biological entities by location aspects. Example: CRMs overlapping with the position chr16:52565276
+```r
+| getCRMs_by_overlap("chr-16", 52565276)
+```
+```
+#Output:
+              crm_name    start      end
+1 crm/CRMHS00011681036 52491457 52580915
+2 crm/CRMHS00011681028 52521486 52576890
+3 crm/CRMHS00005038311 52548344 52570494
+4 crm/CRMHS00007417064 52556000 52582802
+5 crm/CRMHS00009228733 52563088 52592368
+6 crm/CRMHS00003584362 52564940 52565740
+```
+
+Functions:
+
+| Function              | Input                                   | Output                                       |
+|-----------------------|-----------------------------------------|----------------------------------------------|
+| getGenes_by_coord     | Coordinates                             | Genes inside the range                       |
+| getGenes_by_overlap   | Coordinates                             | Genes overlapping with the position/range    |
+| getCRMs_by_coord      | Coordinates                             | CRMs inside the range                        |
+| getCRMs_by_overlap    | Coordinates                             | CRMs overlapping with the position/range     |
+| getTADs_by_coord      | Coordinates                             | TADs inside the range                        |
+| getTADs_by_overlap    | Coordinates                             | TADs overlapping with the position/range     |
 
 
 # Development Status

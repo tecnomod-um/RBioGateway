@@ -13,13 +13,13 @@ getGenes_by_coord(chr, start, end, strand = NULL)
 
 \item{end}{End position (integer).}
 
-\item{strand}{Strand orientation (string), or NULL if not specified. Example: "ForwardStrandPosition". Default: NULL.}
+\item{strand}{Strand orientation (string), or NULL if not specified. Possible values: "ForwardStrandPosition", "ReverseStrandPosition" and NULL. Default: NULL.}
 }
 \value{
 A data.frame containing gene names, start, end, and strand for genes within the specified coordinates. If no data is available, a message is returned.
 }
 \description{
-Function to retrieve genes located within a specified range of genomic coordinates, optionally filtered by strand orientation.
+Function to retrieve human genes located within a specified range of genomic coordinates, optionally filtered by strand orientation.
 }
 \examples{
 \dontrun{

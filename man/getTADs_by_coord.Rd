@@ -17,7 +17,7 @@ getTADs_by_coord(chromosome, start, end)
 A data.frame containing TAD IDs, start, and end positions for TADs within the specified coordinates. If no data is available, a message is returned.
 }
 \description{
-Function to retrieve topologically associating domains (TADs) located within a specified range of genomic coordinates.
+Function to retrieve human topologically associating domains (TADs) located within a specified range of genomic coordinates.
 }
 \examples{
 \dontrun{
